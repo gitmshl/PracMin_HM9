@@ -115,7 +115,23 @@ private:
 		bomb = builder.bomb_;
 	}
 
+	friend ostream& operator<<(ostream&, Person&);
+
 };
+
+ostream& operator<< (ostream& out, Person& p)
+{
+	out << "type: " << (p.type == Person::PESRON_TYPE::terrorist ? "terrorist" : "counter-terrorist") << "\n";
+	if (p.automat) out << "automat: " <<  p.automat << "\n";
+	if (p.bomb) out << "bomb: " << p.bomb << "\n";
+	if (p.bulletproofvest) out << "bulletproofvest: " << p.bulletproofvest << "\n";
+	if (p.grenade) out << "grenade: " << p.grenade << "\n";
+	if (p.knife) out << "knife: " << p.knife << "\n";
+	if (p.pistole) out << "pistole: " << p.pistole << "\n";
+	if (p.sapper) out << "sapper: " << p.sapper << "\n";
+
+	return out;
+}
 
 int main()
 {
@@ -127,6 +143,7 @@ int main()
 		.bomb()
 		.build();
 	
+	cout << p;
 	
 
 	return 0;
